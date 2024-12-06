@@ -57,7 +57,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text('Music AI Chat'),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.deepOrange,
       ),
       body: Column(
         children: [
@@ -84,7 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       children: [
                         if (!isUser)
                           CircleAvatar(
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Colors.deepOrange,
                             child: Icon(Icons.android, color: Colors.white),
                           ),
                         if (!isUser) SizedBox(width: 8),
