@@ -8,10 +8,23 @@ class MusicChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Music AI Chat',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey.shade100,
+      title: 'Music Studio AI',
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Color(0xFF2C2C2C), // Dark studio gray
+        scaffoldBackgroundColor: Color(0xFF1A1A1A), // Nearly black background
+        textTheme: TextTheme(
+          displayLarge: TextStyle(  // Folosim displayLarge în loc de headline1
+            fontFamily: 'Orbitron',
+            color: Colors.greenAccent,
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: TextStyle(  // Folosim bodyLarge în loc de bodyText1
+            fontFamily: 'Futura',
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
       ),
       home: ChatScreen(),
     );
@@ -55,116 +68,100 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Music AI Chat'),
-        centerTitle: true,
-        backgroundColor: Colors.deepOrange,
+        title: Text(
+          'Music Studio AI',
+          style: TextStyle(
+            fontFamily: 'Orbitron',
+            color: Colors.blueGrey.shade500,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Column(
         children: [
-          // Chat messages
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blue.shade100, Colors.white],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-              child: ListView.builder(
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
-                  final message = messages[index];
-                  final isUser = message['sender'] == 'user';
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                    child: Row(
-                      mainAxisAlignment:
-                      isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-                      children: [
-                        if (!isUser)
-                          CircleAvatar(
-                            backgroundColor: Colors.deepOrange,
-                            child: Icon(Icons.android, color: Colors.white),
-                          ),
-                        if (!isUser) SizedBox(width: 8),
-                        Flexible(
-                          child: Container(
-                            padding: EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: isUser ? Colors.blue : Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 4,
-                                  offset: Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: isUser
-                                  ? CrossAxisAlignment.end
-                                  : CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  message['text']!,
-                                  style: TextStyle(
-                                    color: isUser ? Colors.white : Colors.black,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  message['time']!,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: isUser ? Colors.white70 : Colors.black54,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        if (isUser) SizedBox(width: 8),
-                        if (isUser)
-                          CircleAvatar(
-                            backgroundColor: Colors.blueAccent,
-                            child: Icon(Icons.person, color: Colors.white),
-                          ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          // Input field
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+          // Only the feature boxes remain
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            color: Color(0xFF1A1A1A),
+            child: Column(
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Type your message...',
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.message, color: Colors.blueAccent),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  height: 120,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Choose your preferences',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black26,
+                            offset: Offset(1, 1),
+                            blurRadius: 2,
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
-                GestureDetector(
-                  onTap: () => _sendMessage(_controller.text),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.blueAccent,
-                    child: Icon(Icons.send, color: Colors.white),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  height: 120,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Inspire from your idols',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black26,
+                            offset: Offset(1, 1),
+                            blurRadius: 2,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],
