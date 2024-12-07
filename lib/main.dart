@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'preferences_page.dart';
 
 void main() {
   runApp(MusicChatApp());
@@ -91,7 +92,13 @@ class _ChatScreenState extends State<ChatScreen> {
                 // First button
                 GestureDetector(
                   onTapDown: (_) => setState(() => _isPressed1 = true),
-                  onTapUp: (_) => setState(() => _isPressed1 = false),
+                  onTapUp: (_) {
+                    setState(() => _isPressed1 = false);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PreferencesPage()),
+                    );
+                  },
                   onTapCancel: () => setState(() => _isPressed1 = false),
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 150),
@@ -135,7 +142,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                 ),
-                
+
                 // Second button
                 GestureDetector(
                   onTapDown: (_) => setState(() => _isPressed2 = true),
