@@ -77,7 +77,7 @@ class _InstrumentSelectorState extends State<InstrumentSelector> {
                     setState(() {
                       if (isSelected) {
                         selectedInstruments.remove(instrument);
-                      } else {
+                      } else {  
                         selectedInstruments.add(instrument);
                       }
                     });
