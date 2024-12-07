@@ -39,6 +39,8 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final List<Map<String, String>> messages = [];
   final TextEditingController _controller = TextEditingController();
+  bool _isPressed1 = false;
+  bool _isPressed2 = false;
 
   void _sendMessage(String content) {
     if (content.trim().isEmpty) return;
@@ -86,80 +88,97 @@ class _ChatScreenState extends State<ChatScreen> {
             color: Color(0xFF1A1A1A),
             child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
+                // First button
+                GestureDetector(
+                  onTapDown: (_) => setState(() => _isPressed1 = true),
+                  onTapUp: (_) => setState(() => _isPressed1 = false),
+                  onTapCancel: () => setState(() => _isPressed1 = false),
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 150),
+                    transform: Matrix4.identity()..scale(_isPressed1 ? 0.95 : 1.0),
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    height: 120,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Choose your preferences',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Quicksand',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black26,
-                            offset: Offset(1, 1),
-                            blurRadius: 2,
-                          ),
-                        ],
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Choose your preferences',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black26,
+                              offset: Offset(1, 1),
+                              blurRadius: 2,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
+                
+                // Second button
+                GestureDetector(
+                  onTapDown: (_) => setState(() => _isPressed2 = true),
+                  onTapUp: (_) => setState(() => _isPressed2 = false),
+                  onTapCancel: () => setState(() => _isPressed2 = false),
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 150),
+                    transform: Matrix4.identity()..scale(_isPressed2 ? 0.95 : 1.0),
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    height: 120,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.blueGrey[900]!, Colors.blueGrey[800]!],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Inspire from your idols',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Quicksand',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black26,
-                            offset: Offset(1, 1),
-                            blurRadius: 2,
-                          ),
-                        ],
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Inspire from your idols',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black26,
+                              offset: Offset(1, 1),
+                              blurRadius: 2,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
